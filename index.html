@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TaskFlow</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         AUTH PAGE
+    ====================================================== -->
+
+    <section
+        id="authPage"
+        class="auth-page"
+    >
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+                ✓
+            </div>
+
+            <h1>
+                TaskFlow
+            </h1>
+
+            <p class="auth-subtitle">
+                Manage your tasks easily
+            </p>
+
+
+            <!-- LOGIN -->
+
+            <form
+                id="loginForm"
+            >
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Login
+                </button>
+
+
+                <p class="switch-auth">
+
+                    Don't have an account?
+
+                    <a
+                        href="#"
+                        id="showRegister"
+                    >
+                        Register
+                    </a>
+
+                </p>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <form
+                id="registerForm"
+                style="display: none;"
+            >
+
+                <h2>
+                    Create Account
+                </h2>
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimum 6 characters"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Create Account
+                </button>
+
+
+                <p class="switch-auth">
+
+                    Already have an account?
+
+                    <a
+                        href="#"
+                        id="showLogin"
+                    >
+                        Login
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN APP
+    ====================================================== -->
+
+    <section
+        id="appPage"
+        style="display: none;"
+    >
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <div class="logo">
+                    TaskFlow
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <span
+                    id="userEmail"
+                    class="user-email"
+                ></span>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <main class="main-container">
+
+
+            <!-- WELCOME -->
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        My Tasks
+                    </h1>
+
+                    <p>
+                        Stay organized and get things done.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="addTaskBtn"
+                    class="add-task-btn"
+                >
+                    + Add New Task
+                </button>
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Tasks
+                        </p>
+
+                        <h2 id="totalTasks">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Pending
+                        </p>
+
+                        <h2 id="pendingTasks">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Completed
+                        </p>
+
+                        <h2 id="completedTasks">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Due Soon
+                        </p>
+
+                        <h2 id="dueSoonTasks">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH + FILTER -->
+
+            <div class="toolbar">
+
+
+                <div class="search-box">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search tasks..."
+                    >
+
+                </div>
+
+
+                <select
+                    id="categoryFilter"
+                >
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="sortSelect"
+                >
+
+                    <option value="due_asc">
+                        Due Date ↑
+                    </option>
+
+                    <option value="due_desc">
+                        Due Date ↓
+                    </option>
+
+                    <option value="category_asc">
+                        Category A-Z
+                    </option>
+
+                    <option value="category_desc">
+                        Category Z-A
+                    </option>
+
+                    <option value="name_asc">
+                        Task Name A-Z
+                    </option>
+
+                    <option value="name_desc">
+                        Task Name Z-A
+                    </option>
+
+                    <option value="recent">
+                        Recently Added
+                    </option>
+
+                    <option value="oldest">
+                        Oldest Added
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TASKS -->
+
+            <div
+                id="tasksContainer"
+                class="tasks-container"
+            ></div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="emptyState"
+                class="empty-state"
+                style="display: none;"
+            >
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                <h3>
+                    No Tasks Found
+                </h3>
+
+                <p>
+                    Add a new task to get started.
+                </p>
+
+            </div>
+
+
+        </main>
+
+    </section>
+
+
+    <!-- =====================================================
+         TASK MODAL
+    ====================================================== -->
+
+    <div
+        id="taskModal"
+        class="modal"
+        style="display: none;"
+    >
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add New Task
+                </h2>
+
+                <button
+                    id="closeModal"
+                    class="close-btn"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="taskForm">
+
+
+                <div class="form-group">
+
+                    <label for="taskName">
+                        Task Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskName"
+                        placeholder="Enter task name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="taskDescription"
+                        rows="4"
+                        placeholder="Enter task description"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="taskCategory"
+                    >
+
+                        <option value="General">
+                            General
+                        </option>
+
+                        <option value="Study">
+                            Study
+                        </option>
+
+                        <option value="Work">
+                            Work
+                        </option>
+
+                        <option value="Personal">
+                            Personal
+                        </option>
+
+                        <option value="Project">
+                            Project
+                        </option>
+
+                        <option value="Shopping">
+                            Shopping
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskDueDate">
+                        Due Date & Time
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="taskDueDate"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Save Task
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SUPABASE
+    ====================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
